@@ -1,6 +1,6 @@
 import GameSavingLoader from '../gamesavingloader.js';
 
-test('Use GameSavingLoader', (done) => {
+test('Make GameSavingLoader', (done) => {
     const result = {
         id: 9,
         created: 1546300800,
@@ -14,6 +14,13 @@ test('Use GameSavingLoader', (done) => {
 
     GameSavingLoader.load().then((saving) => {
         expect(saving).toEqual(result);
+        done();
+    });
+});
+
+test('Find name of class', (done) => {
+    GameSavingLoader.load().then((saving) => {
+        expect(Object.getPrototypeOf(saving).constructor.name).toEqual('GameSaving');
         done();
     });
 });
